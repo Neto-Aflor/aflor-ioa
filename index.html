@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AFLOR · Eficiência Operacional</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="topbar">
+  <a class="brand" href="#">
+    <div class="brand-text">
+      <div class="name">
+        <span class="aflor-logo">
+          <span class="aflor-text">aflor</span><span class="aflor-arrow">>></span>
+        </span>
+      </div>
+      <div class="sub" style="color:#FFFFFF;">Simples, ágil e intuitiva</div>
+    </div>
+  </a>
+  <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+    <a href="https://meetings.hubspot.com/analder" target="_blank" style="display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:none;background:#FF5A00;color:#FFFFFF;font-family:var(--f-display);text-transform:uppercase;letter-spacing:.06em;box-shadow:0 2px 8px rgba(255,90,0,.28);text-decoration:none;white-space:nowrap;">
+      📅 Agende uma demonstração →
+    </a>
+    <a href="https://aflorsa.com.br/" target="_blank" style="display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#FFFFFF;font-family:var(--f-display);text-transform:uppercase;letter-spacing:.06em;text-decoration:none;white-space:nowrap;">
+      🌐 Conheça nossas soluções →
+    </a>
+  </div>
+</div>
+<div class="hero-strip">
+  <div class="hero-inner">
+    <div style="display:flex;align-items:center;gap:20px;">
+      <div>
+        <div class="hero-title">Diagnóstico de Eficiência Operacional - AFLOR</div>
+        <div class="hero-sub">Identifique, quantifique e monetize perdas operacionais causadas por processos manuais, retrabalho e falta de automação.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="content">
+  <div class="config-panel">
+    <div class="config-header">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#FFFFFF" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      <span class="config-header-title">Parâmetros do Diagnóstico</span>
+      <span class="config-header-sub" style="color:#FFFFFF;">Preencha com base no cenário atual</span>
+    </div>
+    <div class="config-body">
+      <div class="lead-section">
+        <div class="lead-section-title">
+          👤 Identificação da empresa e responsável
+        </div>
+        <div class="lead-grid">
+          <div class="input-group">
+            <label class="input-label">Nome completo <span class="lead-required">*</span></label>
+            <input type="text" id="lead_nome" class="lead-input" placeholder="Seu nome completo" autocomplete="name" required/>
+          </div>
+          <input type="hidden" id="lead_cargo" value=""/>
+          <div class="input-group">
+            <label class="input-label">Empresa <span class="lead-required">*</span></label>
+            <input type="text" id="lead_empresa" class="lead-input" placeholder="Razão social ou nome fantasia" autocomplete="organization" required/>
+          </div>
+          <div class="input-group">
+            <label class="input-label">E-mail corporativo <span class="lead-required">*</span></label>
+            <input type="email" id="lead_email" class="lead-input" placeholder="seu@email.com.br" autocomplete="email" required/>
+          </div>
+          <div class="input-group">
+            <label class="input-label">Celular (WhatsApp) <span class="lead-required">*</span></label>
+            <input type="tel" id="lead_celular" class="lead-input" placeholder="(11) 99999 9999" autocomplete="tel" inputmode="numeric" maxlength="15" required/>
+          </div>
+        </div>
+        <label class="lead-lgpd">
+          <input type="checkbox" id="lead_lgpd"/>
+          <span>
+            Autorizo a <strong>AFLOR</strong> a utilizar os dados deste diagnóstico para contato e análise interna, em conformidade com a
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank">LGPD (Lei nº 13.709/2018)</a>.
+            <span class="lead-required">*</span>
+          </span>
+        </label>
+      </div>
+      <div class="config-grid">
+        <div class="input-group">
+          <label class="input-label">👥 Colaboradores</label>
+          <input type="number" id="colaboradores" class="input-field" value="3" min="1" max="100"/>
+          <div class="input-hint">Quantidade de pessoas na operação</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label">💰 Salário Bruto Mensal (R$)</label>
+          <input type="number" id="salario" class="input-field" value="2000" min="0" step="100"/>
+          <div class="input-hint">Informe o valor médio por colaborador (encargos serão considerados automaticamente)</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label">📋 Formulários/Dia</label>
+          <input type="number" id="formularios" class="input-field" value="3" min="0" step="1"/>
+          <div class="input-hint">Média preenchida por colaborador</div>
+        </div>
+        <div class="input-group">
+          <label class="input-label input-label-help">
+            ⏱ Minutos Perdidos/Dia/Colaborador
+            <span class="field-help">
+              <button type="button" class="field-help-trigger" aria-label="Ajuda sobre minutos perdidos" aria-describedby="minutos-help">?</button>
+              <span class="field-help-box" id="minutos-help" role="tooltip">Tempo médio diário perdido com atividades manuais (organização, digitação e busca), ou seja, apenas tarefas improdutivas que podem ser eliminadas ou reduzidas com automação.</span>
+            </span>
+          </label>
+          <input type="number" id="minutosPerdidos" class="input-field" value="60" min="0" step="5"/>
+          <div class="input-breakdown">📋 Papel · 🚚 Transporte ·  Gestão ·  Digitalização · 🔍 Rastreio ·  Relatórios</div>
+        </div>
+      </div>
+      <div class="config-footer">
+        <div class="config-footer-left">
+          <button class="btn-calc" onclick="gerarDiagnostico()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Gerar Diagnóstico
+          </button>
+          <span class="config-note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Atualiza automaticamente ao alterar qualquer campo
+          </span>
+        </div>
+        <button class="btn-pdf" onclick="imprimirRelatorio()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Gerar Relatório PDF
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- IDs numéricos usados pelo JS para cálculo e payload -->
+  <div style="display:none">
+    <span id="custoManual"></span>
+    <span id="custoAFLOR"></span>
+  </div>
+  <div class="diagnosis-loading" id="diagnosis-loading" aria-live="polite" aria-hidden="true">
+    <div class="loading-card" role="status">
+      <div class="loading-kicker">Processamento Diagnóstico</div>
+      <div class="loading-steps">
+        <span>Analisando indicadores operacionais</span>
+        <span>Calculando eficiência operacional</span>
+        <span>Gerando relatório executivo</span>
+      </div>
+      <div class="loading-bar" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+  <div class="kpi-row kpi-row-4">
+    <div class="kpi-card kpi-hero">
+      <div class="kpi-lbl">Economia Anual Projetada</div>
+      <div class="kpi-val" id="ganhoAnual">—</div>
+      <div class="kpi-sub">Redução de custos com automação</div>
+    </div>
+    <div class="kpi-card kpi-support">
+      <div class="kpi-lbl">Potencial de Recuperação</div>
+      <div class="kpi-val" id="roiPercentual">—</div>
+      <div class="kpi-sub">Retorno sobre investimento mensal</div>
+    </div>
+    <div class="kpi-card kpi-support">
+      <div class="kpi-lbl">Tempo de Payback</div>
+      <div class="kpi-val" id="payback">—</div>
+      <div class="kpi-sub">meses para recuperar o investimento</div>
+    </div>
+    <div class="kpi-card kpi-support">
+      <div class="kpi-lbl">Recuperação de Produtividade</div>
+      <div class="kpi-val" id="horasRecuperadasKPI">—</div>
+      <div class="kpi-sub">horas mensais devolvidas à equipe</div>
+    </div>
+  </div>
+  <div class="analysis-grid analysis-single">
+    <div class="chart-panel">
+      <div class="chart-panel-header">
+        <div class="chart-panel-title">Comparativo Financeiro Mensal</div>
+        <div class="chart-panel-sub">Custo Atual vs Investimento AFLOR</div>
+      </div>
+      <div class="chart-canvas-wrap">
+        <canvas id="comparisonMonthly"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="exec-report">
+    <div class="doc-header">
+      <div class="doc-header-left">
+        <div class="doc-header-brand">
+          <div class="doc-header-title">
+            <span class="aflor-logo">
+              <span class="aflor-text">aflor</span><span class="aflor-arrow">>></span>
+            </span>
+          </div>
+          <div class="doc-header-sub" style="color:#FFFFFF;">Simples, ágil e intuitiva</div>
+        </div>
+      </div>
+      <div class="doc-header-right">
+        <div style="font-family:var(--f-display);font-size:24px;font-weight:800;color:#FFFFFF;letter-spacing:-.3px;margin-bottom:4px;">Diagnóstico de Eficiência Operacional</div>
+        <div class="doc-date" id="docDate" style="color:#FFFFFF;">—</div>
+      </div>
+    </div>
+    <div class="doc-findings">
+      <div class="finding-item">
+        <div class="finding-label">Ganho Anual</div>
+        <div class="finding-val" id="rp_ganhoAnual">—</div>
+        <div class="finding-sub">Redução de Ineficiência</div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-label">Eficiência</div>
+        <div class="finding-val" id="rp_roi">—</div>
+        <div class="finding-sub">Potencial de Recuperação</div>
+      </div>
+      <div class="finding-item">
+        <div class="finding-label">Payback</div>
+        <div class="finding-val" id="rp_payback">—</div>
+        <div class="finding-sub">tempo de recuperação</div>
+      </div>
+      <div class="finding-item highlight">
+        <div class="finding-label">Colaboradores</div>
+        <div class="finding-val" id="rp_colabs">—</div>
+        <div class="finding-sub">colaboradores de campo</div>
+      </div>
+    </div>
+    <div class="doc-body">
+      <div class="doc-section">
+        <div class="doc-section-title"><strong>Parâmetros Utilizados na Simulação</strong></div>
+        <div class="doc-params">
+          <div class="param-item">
+            <div class="param-label">👥 Colaboradores</div>
+            <div class="param-val" id="rp_pColabs">—</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">💰 Salário Mensal</div>
+            <div class="param-val" id="rp_pSalario">—</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">⏱ Min. Perdidos/Dia</div>
+            <div class="param-val" id="rp_pMinutos">—</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">📋 Formulários/Dia</div>
+            <div class="param-val" id="rp_pFormularios">—</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">📄 Custo Unitário</div>
+            <div class="param-val" id="rp_pCustoPapel">R$ 1,30</div>
+          </div>
+        </div>
+      </div>
+      <div class="doc-section">
+        <div class="doc-section-title"><strong>Composição de Custos Mensais — Comparativo Detalhado</strong></div>
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th style="width:35%;color:#FFFFFF;">Item de Custo</th>
+              <th style="color:#FFFFFF;">Sem Automação</th>
+              <th style="color:#FFFFFF;">Plataforma AFLOR</th>
+              <th style="color:#FFFFFF;">Economia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>📄 Formulários em Papel</td>
+              <td id="rp_tCustoPapel">—</td>
+              <td class="zero-val">R$ 0,00</td>
+              <td class="saving-val" id="rp_tDifPapel">—</td>
+            </tr>
+            <tr>
+              <td>⏱ Custo de Tempo Improdutivo</td>
+              <td id="rp_tCustoTempo">—</td>
+              <td class="zero-val">Incluído</td>
+              <td class="saving-val" id="rp_tDifTempo">—</td>
+            </tr>
+            <tr>
+              <td>⚙️ Custos Operacionais Fixos</td>
+              <td id="rp_tCustoOp">—</td>
+              <td class="zero-val">Incluído</td>
+              <td class="saving-val" id="rp_tDifOp">—</td>
+            </tr>
+            <tr>
+              <td>📦 Plano <i>SaaS</i> Plataforma AFLOR</td>
+              <td class="zero-val">—</td>
+              <td class="cost-val" id="rp_tAFLOR">—</td>
+              <td class="zero-val">Investimento</td>
+            </tr>
+            <tr class="total-row">
+              <td>
+                <strong>Total Mensal</strong>
+                <span style="display:none" id="reportInvestimento"></span>
+                <span style="display:none" id="reportEconomia"></span>
+              </td>
+              <td id="rp_tTotalManual">—</td>
+              <td class="cost-val" id="rp_tTotalAFLOR">—</td>
+              <td class="saving-val" id="rp_tEconomia">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="doc-section analyze-box">
+        <div class="doc-section-title"> <strong>Análise e Conclusão</strong></div>
+        <div id="reportAnalysis"></div>
+      </div>
+      <div class="doc-section recommendation-box">
+        <div class="doc-section-title"> <strong>Recomendação</strong></div>
+        <div class="doc-rec">
+          <div class="doc-rec-icon"></div>
+          <div>
+            <div class="doc-rec-title">Adoção Imediata da Plataforma AFLOR</div>
+            <div class="doc-rec-text" id="rp_recText">Preencha os parâmetros acima e clique em "Gerar Diagnóstico" para gerar a recomendação personalizada.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="doc-footer">
+      <div class="doc-footer-info">
+        <span>AFLOR · Diagnóstico de Eficiência Operacional</span>
+        <span>Tecnologia e Inteligência Aplicada · AFLOR</span>
+        <span><a href="https://aflorsa.com.br/" target="_blank">aflorsa.com.br</a></span>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="print-prospect-layout">
+    <div class="pr-header">
+      <div class="pr-logo" style="background: #000000; padding: 4px 10px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+        <span class="aflor-logo" style="font-size: 24px;">
+          <span class="aflor-text">aflor</span><span class="aflor-arrow">>></span>
+        </span>
+      </div>
+      <div class="pr-title">
+        <h1>Diagnóstico de Eficiência Operacional</h1>
+        <p id="pr_date">DATA DO RELATÓRIO</p>
+      </div>
+    </div>
+    <div class="pr-hero">
+      <span>Economia Anual Projetada</span>
+      <h2 id="pr_ganhoAnual">R$ 0,00</h2>
+      <p>Potencial real de redução de custos mensais através da automação e digitalização de processos, com eliminação de retrabalho.</p>
+    </div>
+    <div class="pr-kpis">
+      <div class="pr-kpi">
+        <label>Potencial de Recuperação</label>
+        <strong id="pr_roi">0%</strong>
+      </div>
+      <div class="pr-kpi">
+        <label>Tempo de Payback</label>
+        <strong id="pr_payback">0 meses</strong>
+      </div>
+      <div class="pr-kpi">
+        <label>Recuperação de Produtividade</label>
+        <strong id="pr_horas">0 h/mês</strong>
+      </div>
+    </div>
+    <div class="pr-chart-area">
+      <div class="pr-chart-title">Comparativo Financeiro Mensal — Custo Atual vs Investimento AFLOR</div>
+      <div class="pr-chart-bars">
+        <div class="pr-bar-group">
+          <div class="pr-bar-track">
+            <div class="pr-bar-val" id="pr_cssBarValManual">—</div>
+            <div class="pr-bar pr-bar-navy" id="pr_cssBarManual" style="height:80%"></div>
+          </div>
+          <div class="pr-bar-label">Custo Processo Atual</div>
+        </div>
+        <div class="pr-bar-group">
+          <div class="pr-bar-track">
+            <div class="pr-bar-val" id="pr_cssBarValAflor">—</div>
+            <div class="pr-bar pr-bar-blue" id="pr_cssBarAflor" style="height:20%"></div>
+          </div>
+          <div class="pr-bar-label">Investimento AFLOR</div>
+        </div>
+      </div>
+    </div>
+    <div class="pr-recommendation">
+      <p><span class="pr-rec-inline">Recomendação ➔ Adoção imediata da Plataforma AFLOR.</span> <span id="pr_pdfRecText"></span></p>
+    </div>
+    <div class="pr-schedule-center">
+      <a href="https://meetings.hubspot.com/analder" target="_blank" class="pr-btn-schedule-main">Agendar Reunião de Validação Técnica (15 min)</a>
+    </div>
+    <div style="margin-top:12px;background:#000000;border-radius:6px;padding:12px 14px;page-break-inside:avoid;">
+      <div style="font-size:13px;font-weight:700;color:#c2410c;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Parâmetros do Diagnóstico</div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px;color:#FFFFFF;">
+        <tr>
+          <td style="padding:3px 8px 3px 0;color:#94a3b8;white-space:nowrap;">Empresa</td>
+          <td style="padding:3px 0;font-weight:600;" id="pdf-empresa"></td>
+          <td style="padding:3px 8px 3px 24px;color:#94a3b8;white-space:nowrap;">Colaboradores</td>
+          <td style="padding:3px 0;font-weight:600;" id="pdf-colaboradores"></td>
+        </tr>
+        <tr>
+          <td style="padding:3px 8px 3px 0;color:#94a3b8;white-space:nowrap;">Salário Bruto Mensal</td>
+          <td style="padding:3px 0;font-weight:600;" id="pdf-salario"></td>
+          <td style="padding:3px 8px 3px 24px;color:#94a3b8;white-space:nowrap;">Formulários/Dia</td>
+          <td style="padding:3px 0;font-weight:600;" id="pdf-formularios"></td>
+        </tr>
+        <tr>
+          <td style="padding:3px 8px 3px 0;color:#94a3b8;white-space:nowrap;">Minutos Perdidos/Dia/Colaborador</td>
+          <td style="padding:3px 0;font-weight:600;" id="pdf-minutos"></td>
+          <td colspan="2"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="pr-footer">
+      <div class="pr-cta">
+        <h3>Próximos Passos</h3>
+        <p>Retrabalho, papel e planilhas drenam tempo e dinheiro. Automação transforma eficiência operacional em lucro. <strong>Pronto para a mudança?</strong></p>
+      </div>
+      <div class="pr-contact">
+        <strong>AFLOR - Simples, ágil e intuitiva.</strong>
+        <a href="https://aflorsa.com.br/" target="_blank" style="color:#FF5A00;text-decoration:none;font-weight:600;">aflorsa.com.br</a><br>
+        <a href="mailto:neto@aflorsa.com.br" style="color:#FF5A00;text-decoration:none;font-weight:600;">neto@aflorsa.com.br</a><br>
+        <a href="https://wa.me/5519992264223" target="_blank" style="color:#FF5A00;text-decoration:none;font-weight:600;">+55 19 99226-4223</a><br>
+        Swiss Park Office, Campinas - SP
+      </div>
+    </div>
+  </div>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>
